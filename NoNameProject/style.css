@@ -1,0 +1,299 @@
+/* #11416f */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    scroll-behavior: smooth;
+
+}
+
+#Home {
+    background-image: url("images/home-background.png");
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 100vh;
+    background-position-y: 0;
+    height: 100vh;
+}
+
+
+header {
+    height: 100px;
+    /*
+    position: fixed;
+    top: 0;
+    width: 100%;
+    */
+}
+
+header > h1 {
+    position: relative;
+    left: 7vw;
+    top: 25px;
+    display: inline-block;
+    color: #11416f;
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 2rem;
+    letter-spacing: 2px;
+}
+
+.navbar {
+    position: relative;
+    right: 10vw;
+    float: right;
+    margin: auto;
+
+
+}
+
+.nav-item {
+    float: left;
+
+}
+
+.nav-item > a {
+    display: block;
+    text-align: center;
+    margin: 20px 0;
+    padding: 14px 20px;
+    font-size: 20px;
+    color: white;
+}
+
+.nav-item > a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: white;
+    margin: auto;
+    transition: width .3s;
+
+}
+
+.nav-item > a:hover::after {
+    width: 100%;
+}
+
+.home-text {
+    position: absolute;
+    top: 40vh;
+    left: 7vw;
+
+}
+
+.home-text > a {
+
+    position: relative;
+    top: 80px;
+    left: calc(50% - 59px);
+    box-shadow: 2px 1px 5px #888888;
+    padding: 18px 15px;
+    transition: 1s;
+    background-color: #11416f;
+    color: white;
+    border-radius: 1px;
+
+}
+
+.home-text > a:hover {
+    transition: 1s;
+    color: rgba(256, 256, 256, .8);
+    border-radius: 4px;
+    box-shadow: none;
+
+}
+
+#home-text-span {
+    color: #11416f;
+    font-size: 3rem;
+}
+/*
+    border-right: 3px solid #11416f;
+    animation: cursor 1s step-end infinite;
+}
+
+@keyframes cursor {
+    0% {
+        border-right: 3px solid #11416f;
+    }
+    50% {
+        border-right: none;
+    }
+}
+*/
+
+.home-text > p {
+    margin-top: 20px;
+    color: rgba(0, 0, 0, 0.7);
+    line-height: 1.7;
+}
+
+.apps {
+    position: relative;
+    top: 150px;
+    width: 100%;
+    text-align: center;
+}
+
+.app {
+    display: inline-block;
+    margin: 10px 50px;
+    color: #888888;
+
+}
+
+.app > span {
+    font-size: 1.2rem;
+    position: absolute;
+    padding: 5px;
+}
+
+.app:last-child > img {
+
+    height: 40px;
+    width: 50px;
+}
+
+#About{
+    background-color: #11416f;
+}
+
+
+.about-div{
+    line-height: 1.5;
+    background: url("images/background.jpg") no-repeat center center fixed;
+    padding: 20vh 10vw;
+    background-size: cover;
+    box-shadow: inset 2000px 0 0 0 rgba(0, 0, 0, 0.5);
+
+}
+
+
+.about-profiles{
+    float: right;
+    text-align: center;
+}
+
+.profile-pic{
+    height: 250px;
+    width: 250px;
+    border-radius: 100%;
+    margin-top: 30px;
+
+}
+
+.about-text{
+    width: 50vw;
+    display: inline-block;
+    color: white;
+}
+
+.about-text > h1 {
+    margin-bottom: 30px;
+}
+
+.about-profiles > ul {
+    margin-top: 30px;
+}
+.about-profiles > ul > li{
+    display: inline;
+    margin: 0 10px;
+}
+
+.about-profiles > ul > li:hover{
+    opacity: 0.7;
+}
+
+#Skills{
+    padding: 5vh 8vw;
+    background-color: #112b3c;
+    color: white;
+    position: relative;
+}
+
+.resume{
+    width: 50%;
+}
+
+.resume::before{
+    content: "";
+    background: #888888;
+    position: absolute;
+    top: calc(5vh + 50px);
+    left: 4vw;
+    bottom: 0;
+    width: 5px;
+
+
+
+}
+
+.resume > div{
+    margin: 50px 0;
+}
+
+.resume > div > span{
+    clip-path: polygon(0 0, 100% 0%, 100% 100%, 0 100%, 15% 50%);
+    position: relative;
+    right: 30px;
+    background: #888888;
+    padding: 5px 30px 5px 50px;
+}
+
+.resume > div > *{
+    margin: 12px 0;
+}
+
+
+.resume > div.resume-icon-1::before{
+    content: "";
+    position: absolute;
+    background-image: url("images/work.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    left: calc(4vw - 22px);
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    z-index: 2;
+}
+
+.resume > div.resume-icon-2::before{
+    content: "";
+    background-image: url("images/eduication.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    left: calc(4vw - 22px);
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    z-index: 2;
+}
+
+.resume > div::before{
+    content: "";
+    position: absolute;
+    left: calc(4vw - 5px);
+    background: rgba(256,256,256,1);
+    border-radius: 100%;
+    width: 15px;
+    height: 15px;
+    z-index: 2;
+}
+
+
+
+
+
+
+
+
