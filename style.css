@@ -115,20 +115,7 @@ header > h1 {
     color: #11416f;
     font-size: 3rem;
 }
-/*
-    border-right: 3px solid #11416f;
-    animation: cursor 1s step-end infinite;
-}
 
-@keyframes cursor {
-    0% {
-        border-right: 3px solid #11416f;
-    }
-    50% {
-        border-right: none;
-    }
-}
-*/
 
 .home-text > p {
     margin-top: 20px;
@@ -246,6 +233,34 @@ header > h1 {
     right: 30px;
     background: #888888;
     padding: 5px 30px 5px 50px;
+    transform: translateY(-30px);
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.resume > div.show > span{
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.resume > div > h1{
+    opacity: 0;
+    transition: 0.3s;
+}
+.resume > div.show > h1{
+    opacity: 1;
+}
+
+
+.resume > div > p{
+    transform: translateX(30px);
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.resume > div.show > p{
+    transform: translateX(0);
+    opacity: 1;
 }
 
 .resume > div > *{
@@ -290,6 +305,11 @@ header > h1 {
     z-index: 2;
 }
 
+.resume-icon-1 > h1,
+.resume-icon-2 > h1{
+    position: relative;
+    top: 10px;
+}
 
 
 

@@ -8,40 +8,23 @@ new TypeIt("#home-text-span", {
 
 
 
+const skills = document.querySelectorAll(".resume > div");
 
+const observer = new IntersectionObserver(
+    entries => {
+        entries.forEach(entry =>{
+            entry.target.classList.toggle("show", entry.isIntersecting)
+            if(entry.isIntersecting) observer.unobserve(entry.target)
+        })
+    },
+    {
+        threshold: 1,
+    }
+)
 
-
-
-
-
-
-
-
-
-
-
-
-
-//
-// let letter = 0;
-// let speed = 0;
-// function typeAnimate(){
-//     let text = "Coding is life";
-//     if (letter < text.length){
-//         document.getElementById("home-text-span").innerHTML += text.charAt(letter);
-//         letter++;
-//         speed = 150;
-//
-//     }
-//
-//     setTimeout(typeAnimate,speed);
-// }
-//
-//
-//
-//
-//
-// typeAnimate()
+skills.forEach(skill =>{
+    observer.observe(skill)
+})
 
 
 
