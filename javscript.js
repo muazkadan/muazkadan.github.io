@@ -9,7 +9,7 @@ new TypeIt("#home-text-span", {
 
 
 const skills = document.querySelectorAll(".resume > div");
-
+const progressBar = document.querySelectorAll(".progress");
 const observer = new IntersectionObserver(
     entries => {
         entries.forEach(entry =>{
@@ -24,6 +24,10 @@ const observer = new IntersectionObserver(
 
 skills.forEach(skill =>{
     observer.observe(skill)
+})
+
+progressBar.forEach(pb=>{
+    observer.observe(pb)
 })
 
 
