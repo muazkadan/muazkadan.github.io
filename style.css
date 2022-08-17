@@ -382,20 +382,61 @@ header > h1 {
     opacity: 1;
 }
 
+#Projects{
+    position: relative;
+    padding: 70px 0;
+    background: #F5F5F5F5;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 270px));
+    grid-gap: 3em;
+    line-height: 1.5;
+    justify-content: center;
+    text-align: center;
+    width: 80vw;
+    margin: auto;
+}
+#Projects > h1{
+    margin: 70px 0;
+    text-align: center;
+
+}
+.card > img{
+    height: 100px;
+    width: 100px;
+    padding: 5px;
+    border-radius: 50%;
+    border: 3px solid #888888;
+
+}
 
 
+.card{
+    position: relative;
+    width: 250px;
+    padding: 20px 10px 50px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    transition: 0.5s;
+}
+
+.card > h3{
+
+    margin-bottom: 20px;
 
 
-
-
-
-
-
-
-
-
-
-
+}
+.card > div{
+    position: absolute;
+    bottom: 15px;
+    width: 250px;
+}
+.card:hover{
+    box-shadow: rgba(0, 0, 0, 0.25) 0 14px 28px, rgba(0, 0, 0, 0.22) 0 10px 10px;
+}
 
 
 
