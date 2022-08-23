@@ -143,9 +143,9 @@ header > h1 {
     padding: 5px;
 }
 
-.app:last-child > img {
+.app> img {
 
-    height: 40px;
+    height: 50px;
     width: 50px;
 }
 
@@ -187,15 +187,18 @@ header > h1 {
     margin-bottom: 30px;
 }
 
-.about-profiles > ul {
+.about-profiles > ul,
+.socials > ul{
     margin-top: 30px;
 }
-.about-profiles > ul > li{
+.about-profiles > ul > li
+{
     display: inline;
     margin: 0 10px;
 }
 
-.about-profiles > ul > li:hover{
+.about-profiles > ul > li:hover,
+.socials > ul > li:hover{
     opacity: 0.7;
 }
 
@@ -219,8 +222,6 @@ header > h1 {
     left: 6vw;
     bottom: 0;
     width: 5px;
-
-
 
 }
 
@@ -272,7 +273,8 @@ header > h1 {
 .resume > div.resume-icon-1::before{
     content: "";
     position: absolute;
-    background-image: url("images/work.png");
+    background-image: url("images/work.svg");
+    background-size: 32px;
     background-repeat: no-repeat;
     background-position: center;
     left: calc(6vw - 22px);
@@ -284,9 +286,10 @@ header > h1 {
 
 .resume > div.resume-icon-2::before{
     content: "";
-    background-image: url("images/eduication.png");
+    background-image: url("images/education.svg");
     background-repeat: no-repeat;
     background-position: center;
+    background-size: 38px;
     position: absolute;
     left: calc(6vw - 22px);
     border-radius: 100%;
@@ -438,10 +441,54 @@ header > h1 {
     box-shadow: rgba(0, 0, 0, 0.25) 0 14px 28px, rgba(0, 0, 0, 0.22) 0 10px 10px;
 }
 
+#Contact{
+    padding: 5vh 10vw;
+    background: #2C3333;
+    color: #ffffff;
+
+}
+#Contact > div{
+    position: relative;
+    display: inline-block;
 
 
+}
 
+.contact-text{
+    float: left;
+    width: 60%;
+    margin-top: 20px;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 20px;
+}
 
+.socials{
+    width: 39%;
+}
+.socials > ul > li{
+    margin: 20px;
+}
+.socials > ul > li > svg{
+    vertical-align: middle;
+    width: 32px;
+}
+.socials > ul > li > a{
+    padding-left: 15px;
+    color: white;
+
+}
+
+.socials::before{
+    content: "";
+    position: absolute;
+    text-align: center;
+    top: 20px;
+    left: 0;
+    height: 200px;
+    width: 5px;
+    background: white;
+}
 
 
 
