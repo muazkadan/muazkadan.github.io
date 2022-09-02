@@ -2,13 +2,13 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300;400;500&display=swap');
 * {
     margin: 0;
     padding: 0;
     list-style: none;
     text-decoration: none;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Signika Negative', sans-serif;
     font-weight: 500;
     scroll-behavior: smooth;
 
@@ -35,7 +35,7 @@ header {
 
 header > h1 {
     position: relative;
-    left: 7vw;
+    left: 5vw;
     top: 25px;
     display: inline-block;
     color: #11416f;
@@ -46,7 +46,7 @@ header > h1 {
 
 .navbar {
     position: relative;
-    right: 10vw;
+    right: 5vw;
     float: right;
     margin: auto;
 
@@ -91,9 +91,12 @@ header > h1 {
 
 .home-text > a {
 
-    position: relative;
-    top: 80px;
-    left: calc(50% - 59px);
+    position: absolute;
+    top: 200px;
+    left: 0;
+    right: 0;
+    width: fit-content;
+    margin: 0 auto;
     box-shadow: 2px 1px 5px #888888;
     padding: 18px 15px;
     transition: 1s;
@@ -132,23 +135,23 @@ header > h1 {
 
 .app {
     display: inline-block;
-    margin: 10px 50px;
     color: #888888;
-
+    width: 50%;
 }
 
 .app > span {
     font-size: 1.2rem;
-    position: absolute;
+    display: inline-block;
     padding: 5px;
 }
 
-.app> img {
+.app> svg, .app> img {
 
     height: 50px;
     width: 50px;
 }
-
+.cls-outside-1{fill:#11416f;}
+.cls-inside-2{fill:#fff;}
 #About{
     background-color: #11416f;
 }
@@ -184,9 +187,16 @@ header > h1 {
 }
 
 .about-text > h1 {
+    display: inline-block;
     margin-bottom: 30px;
 }
-
+.about-text > *{
+    box-shadow: inset 2000px 0 0 0 rgb(0 0 0 / 50%);
+    border-color: rgba(0, 0, 0, 1);
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
 .about-profiles > ul,
 .socials > ul{
     margin-top: 30px;
@@ -453,7 +463,9 @@ header > h1 {
 
 
 }
-
+.contact-text > h1{
+    margin-bottom: 15px;
+}
 .contact-text{
     float: left;
     width: 60%;
@@ -490,5 +502,216 @@ header > h1 {
     background: white;
 }
 
+.side-menu {
+    display: none;
+}
 
+@media (max-width: 768px){
+    .navbar{
+        width: 100%;
+        height: 100%;
+        max-height: 0;
+        transition: max-height .2s ease-out;
+        position: fixed;
+        overflow: hidden;
+        background-color: #112b3c;
+        z-index: 100;
+        right: 0;
+    }
+    .nav-item{
+        width: 100%;
+    }
+    .nav-item > a {
+        text-align: left;
+        padding-left: 5vw;
+    }
+    .hamb{
+        cursor: pointer;
+        float: right;
+        padding: 40px 20px;
+    }
+
+
+    .hamb-line {
+        background: white;
+        display: block;
+        height: 2px;
+        position: relative;
+        width: 24px;
+
+    }
+
+    .hamb-line::before,
+    .hamb-line::after{
+        background: white;
+        content: '';
+        display: block;
+        height: 100%;
+        position: absolute;
+        transition: all .2s ease-out;
+        width: 100%;
+    }
+
+    .hamb-line::before{
+        top: 5px;
+    }
+
+    .hamb-line::after{
+        top: -5px;
+    }
+
+    /* Toggle menu icon */
+
+    .side-menu:checked ~ .navbar{
+        transition: max-height .5s ease-out;
+        max-height: 100%;
+    }
+
+    .side-menu:checked ~ .hamb .hamb-line {
+        background: transparent;
+    }
+
+    .side-menu:checked ~ .hamb .hamb-line::before {
+        transform: rotate(-45deg);
+        top:0;
+
+    }
+
+    .side-menu:checked ~ .hamb .hamb-line::after {
+        transform: rotate(45deg);
+        top:0;
+    }
+
+    header > h1{
+        color: white;
+        top: 10px;
+    }
+    #Home{
+        position: relative;
+        overflow: hidden;
+        background: url("images/home-background-mobile2.png") bottom center no-repeat;
+    }
+
+    .home-text{
+        position: absolute;
+        top: 35%;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: 0 auto;
+        width: 80%;
+    }
+    #home-text-span{
+        font-size: 2rem;
+        color: white;
+    }
+
+    .home-text > p{
+        font-size: 1rem;
+        color: #e1e1e1;
+    }
+
+    .home-text > a{
+        top: 68%;
+        box-shadow: none;
+        padding: 15px 12px;
+        font-size: 0.9rem;
+    }
+    .apps{
+        position: absolute;
+        top: 82%;
+    }
+    .app > span {
+        font-size: 1rem;
+    }
+
+    header::after{
+        content: "";
+        position: absolute;
+        top: 15%;
+        right: 60%;
+        height: 130px;
+        width: 180px;
+        background: url("images/monitor.png") no-repeat;
+        background-size: contain;
+    }
+    header::before{
+        content: "";
+        position: absolute;
+        top: 15%;
+        left: 82%;
+        height: 120px;
+        width: 90px;
+        background: url("images/mobile.png") no-repeat;
+        background-size: contain;
+    }
+    .home-text::after{
+        content: "";
+        position: absolute;
+        bottom: 20vh;
+        right: 75%;
+        height: 120px;
+        width: 150px;
+        background: url("images/window.png") no-repeat;
+        background-size: contain;
+    }
+    .home-text::before{
+        content: "";
+        position: absolute;
+        bottom: 25vh;
+        left: 75%;
+        height: 150px;
+        width: 200px;
+        background: url("images/laptop.png") no-repeat;
+        background-size: contain;
+    }
+
+
+
+
+    .about-div{
+        padding: 10vh 10vw ;
+    }
+    .about-text{
+        width: 80vw;
+    }
+    .about-profiles{
+        float: unset;
+        text-align: center;
+    }
+
+    .resume {
+        width: 70vw;
+        display: block;
+        margin: 0 auto;
+        float: right;
+    }
+    .progress-bars{
+        display: block;
+        margin: 0 auto;
+        width: 75vw;
+        float: unset;
+        clear: both;
+    }
+
+    #Contact > div{
+        display: block;
+    }
+    .contact-text{
+        float: unset;
+        width: unset;
+    }
+    .socials > ul{
+        width: fit-content;
+        margin: 30px auto 0;
+    }
+    .socials::before{
+        top: -25px;
+        height: 5px;
+        width: 100%;
+    }
+    .socials{
+        width: unset;
+    }
+}
 

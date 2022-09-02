@@ -31,5 +31,7 @@ progressBar.forEach(pb=>{
 })
 
 
+const sideMenu = document.getElementById("side-menu");
 
-
+let navItems = document.querySelectorAll(".nav-item");
+navItems.forEach((item) => {item.addEventListener("click", function (){if(sideMenu.checked){sideMenu.checked = 0;}})})
