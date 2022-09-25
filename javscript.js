@@ -1,12 +1,9 @@
-
 new TypeIt("#home-text-span", {
     strings: "Coding is life",
     speed: 175,
     loop: true,
     loopDelay: 5000
 }).go();
-
-
 
 const skills = document.querySelectorAll(".resume > div");
 const progressBar = document.querySelectorAll(".progress");
@@ -29,7 +26,6 @@ skills.forEach(skill =>{
 progressBar.forEach(pb=>{
     observer.observe(pb)
 })
-
 
 const sideMenu = document.getElementById("side-menu");
 
