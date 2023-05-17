@@ -379,8 +379,8 @@ header > h1 {
 }
 
 .container{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(270px, 270px));
+    display: flex;
+    flex-wrap: wrap;
     grid-gap: 3em;
     line-height: 1.5;
     justify-content: center;
