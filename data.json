@@ -1,0 +1,210 @@
+{
+  "workExperience": [
+    {
+      "title": "Android Developer",
+      "company": "Oak Smart Technology",
+      "location": "United Kingdom (Remote)",
+      "period": "Jul. 2024 - Present",
+      "description": ""
+    },
+    {
+      "title": "Android Developer",
+      "company": "Kaya Smart Technologies",
+      "location": "Istanbul / Turkiye (Hybrid)",
+      "period": "Sept. 2023 - Jul. 2024",
+      "description": "Design and build advanced applications for the Android platform."
+    },
+    {
+      "title": "Android Developer",
+      "company": "Nuom",
+      "location": "Nottingham / England (Remote)",
+      "period": "Jul. 2022 - Jul. 2023",
+      "description": "Researching, designing, managing software programs. Modifying software to fix error, improve its performance."
+    },
+    {
+      "title": "Android Developer",
+      "company": "City Technologies Center",
+      "location": "Konya / Turkiye",
+      "period": "Sept. 2022 - Mar. 2023",
+      "description": "Development of new android applications with recent technologies."
+    },
+    {
+      "title": "Android Developer",
+      "company": "Appcent",
+      "location": "Istanbul / Turkiye (Remote)",
+      "period": "Aug. 2021 - Jul. 2022",
+      "description": "Worked on an e-commerce (Unishop) and a B2C (Yemekcom) apps."
+    },
+    {
+      "title": "Android Developer",
+      "company": "Karga Karga",
+      "location": "Istanbul / Turkiye (Remote)",
+      "period": "Jul. 2021 - Apr. 2022",
+      "description": "Was responsible for development, maintenance and updating existing and new projects."
+    },
+    {
+      "title": "Intern",
+      "company": "HAVELSAN",
+      "location": "Ankara / Turkiye",
+      "period": "Aug. 2020 - Sept. 2020",
+      "description": "Learned how to use technologies such as: Reinforcement Learning, ANN, Unity3D"
+    },
+    {
+      "title": "Assistant Student",
+      "company": "KTO Karatay University",
+      "location": "Konya / Turkiye",
+      "period": "Mar. 2020 - Apr. 2020",
+      "description": "Worked on an android project developed with Java"
+    }
+  ],
+  "education": [
+    {
+      "degree": "Master Degree, Software Engineering",
+      "institution": "Konya Technical University",
+      "location": "Konya / Turkey",
+      "period": "Feb. 2023 - Present",
+      "description": ""
+    },
+    {
+      "degree": "Bachelor degree, Computer Engineering",
+      "institution": "KTO Karatay University",
+      "location": "Konya / Turkey",
+      "period": "Sept. 2017 - Apr. 2021",
+      "description": "GPA - 3.75"
+    }
+  ],
+  "projects": {
+    "personal": [
+      {
+        "title": "Namaz Vakitleri",
+        "description": "An app that shows Prayer Times in Turkey using Web Scrapping (JSoup). It also has an alarm system and a widget.",
+        "image": "images/project2.png",
+        "links": [
+          {
+            "url": "https://play.google.com/store/apps/details?id=net.mouazkaadan.namazvakitleri",
+            "text": "View on Google Play",
+            "icon": "fab fa-google-play"
+          }
+        ]
+      },
+      {
+        "title": "MCipher - Encrypt & Decrypt",
+        "description": "Simple encrypting and decrypting app that uses some known methods like Caesar, Affine, Vigenere etc. to secure texts, messages, passwords.",
+        "image": "images/project4.png",
+        "links": []
+      },
+      {
+        "title": "MTabu - Forbidden Words",
+        "description": "Social word game, it's also known as taboo.",
+        "image": "images/project3.png",
+        "links": [
+          {
+            "url": "https://play.google.com/store/apps/details?id=net.mouazkaadan.mtabu",
+            "text": "View on Google Play",
+            "icon": "fab fa-google-play"
+          }
+        ]
+      },
+      {
+        "title": "2048 Ball Merge 3D",
+        "description": "A ball puzzle game based on 2048 created with Unity for Android.",
+        "image": "images/project1.png",
+        "links": [
+          {
+            "url": "https://play.google.com/store/apps/details?id=net.mouazkaadan.BallMerge3D",
+            "text": "View on Google Play",
+            "icon": "fab fa-google-play"
+          }
+        ]
+      }
+    ],
+    "professional": [
+      {
+        "title": "GoPDF",
+        "description": "It's a Pdf management tool that provides features such as scanning, signing, converting to JPEG and Word, merging, compressing, and password protection.",
+        "image": "images/project8.webp",
+        "links": [
+          {
+            "url": "https://play.google.com/store/apps/details?id=io.gopdf",
+            "text": "View on Google Play",
+            "icon": "fab fa-google-play"
+          }
+        ]
+      },
+      {
+        "title": "CLIQ",
+        "description": "It's a social networking app that will allow people to post and connect with like-minded individuals and join interest-based clubs",
+        "image": "https://images-ext-1.discordapp.net/external/ql_Xwxvtv8tg8zEi0zsiIkvzyyAOdZbmZt13a6voGYs/https/bitbucket-assetroot.s3.amazonaws.com/c/photos/2023/Jun/09/1637654711-4-cliq-android-logo_avatar.png",
+        "links": [
+          {
+            "url": "https://thecliq.app/",
+            "text": "View Website",
+            "icon": "fas fa-globe"
+          }
+        ]
+      },
+      {
+        "title": "PauseTrack",
+        "description": "Pausetrack is a personalised health symptoms tracker designed specifically for women who are, or think they might be, in peri-menopause.",
+        "image": "https://play-lh.googleusercontent.com/eV07ncifT6WW9pSH2qfNEBxHM_zJZ9vg2B6AiP2Aksi_xloVYzLKSLEqfOmugAa2AWc=w240-h480-rw",
+        "links": [
+          {
+            "url": "https://play.google.com/store/apps/details?id=com.changextra.pausetrack",
+            "text": "View on Google Play",
+            "icon": "fab fa-google-play"
+          }
+        ]
+      },
+      {
+        "title": "Talk It Out",
+        "description": "It's an app that is designed to help people get their heads straight, by walking and talking. It's a simple, fun, and human way to boost productivity.",
+        "image": "https://play-lh.googleusercontent.com/Wt__iKtk-nLisuLp6mx2IiUu5XriKrZYCYqWoAd1ixMmuGywOOCRdV2xdQDE7nJ1xA=w240-h480-rw",
+        "links": [
+          {
+            "url": "https://play.google.com/store/apps/details?id=app.talkitout.android",
+            "text": "View on Google Play",
+            "icon": "fab fa-google-play"
+          }
+        ]
+      },
+      {
+        "title": "Yemek.com",
+        "description": "A new version of the currently existing Yemekcom application.",
+        "image": "images/project7.png",
+        "links": [
+          {
+            "url": "https://play.google.com/store/apps/details?id=com.yemeksepeti.yemekcom",
+            "text": "View on Google Play",
+            "icon": "fab fa-google-play"
+          }
+        ]
+      }
+    ]
+  },
+  "articles": [
+    {
+      "title": "MLKit Document Scanner with Jetpack Compose",
+      "description": "Integration of MLKit Document Scanning in Jetpack Compose.",
+      "image": "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*tc4ALimgOUBC5UvgW1lrlA.jpeg",
+      "links": [
+        {
+          "url": "https://medium.com/@muaz.kadan/mlkit-document-scanner-with-jetpack-compose-4244d352bece",
+          "text": "Read on Medium",
+          "icon": "fab fa-medium"
+        }
+      ]
+    },
+    {
+      "title": "Biometric Authentication in Jetpack Compose",
+      "description": "Integration of biometric authentication in Jetpack Compose.",
+      "image": "https://miro.medium.com/v2/resize:fit:1400/format:webp/0*VfpjfmCAwBf1egh1.jpg",
+      "links": [
+        {
+          "url": "https://medium.com/@muaz.kadan/biometric-authentication-in-jetpack-compose-5e4d7e35d1e7",
+          "text": "Read on Medium",
+          "icon": "fab fa-medium"
+        }
+      ]
+    }
+  ]
+}

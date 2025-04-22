@@ -100,6 +100,9 @@ function initProjectTabs() {
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.project-tab-content');
     
+    // Load data from JSON file
+    loadDataFromJSON();
+    
     tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             const target = btn.dataset.target;
@@ -124,6 +127,170 @@ function initProjectTabs() {
                 }
             });
         });
+    });
+}
+
+// Load data from JSON file
+function loadDataFromJSON() {
+    fetch('data.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Render work experience
+            renderWorkExperience(data.workExperience);
+            
+            // Render education
+            renderEducation(data.education);
+            
+            // Render projects
+            renderProjects(data.projects.personal, 'personal');
+            renderProjects(data.projects.professional, 'professional');
+            
+            // Render articles
+            renderArticles(data.articles);
+        })
+        .catch(error => {
+            console.error('Error loading data:', error);
+        });
+}
+
+// Render work experience
+function renderWorkExperience(experiences) {
+    const timelineContainer = document.querySelector('.experience-section .timeline');
+    if (!timelineContainer) return;
+    
+    // Clear existing content
+    timelineContainer.innerHTML = '';
+    
+    // Add each experience item
+    experiences.forEach(exp => {
+        const timelineItem = document.createElement('div');
+        timelineItem.className = 'timeline-item';
+        
+        timelineItem.innerHTML = `
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">${exp.period}</div>
+            <div class="timeline-content">
+                <h3>${exp.title}</h3>
+                <p>${exp.company}, ${exp.location}</p>
+                ${exp.description ? `<p>${exp.description}</p>` : ''}
+            </div>
+        `;
+        
+        timelineContainer.appendChild(timelineItem);
+    });
+}
+
+// Render education
+function renderEducation(educations) {
+    const timelineContainer = document.querySelector('.education-section .timeline');
+    if (!timelineContainer) return;
+    
+    // Clear existing content
+    timelineContainer.innerHTML = '';
+    
+    // Add each education item
+    educations.forEach(edu => {
+        const timelineItem = document.createElement('div');
+        timelineItem.className = 'timeline-item';
+        
+        timelineItem.innerHTML = `
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">${edu.period}</div>
+            <div class="timeline-content">
+                <h3>${edu.degree}</h3>
+                <p>${edu.institution}, ${edu.location}</p>
+                ${edu.description ? `<p>${edu.description}</p>` : ''}
+            </div>
+        `;
+        
+        timelineContainer.appendChild(timelineItem);
+    });
+}
+
+// Render projects
+function renderProjects(projects, tabId) {
+    const projectGrid = document.querySelector(`#${tabId} .project-grid`);
+    if (!projectGrid) return;
+    
+    // Clear existing content
+    projectGrid.innerHTML = '';
+    
+    // Add each project
+    projects.forEach(project => {
+        const projectCard = document.createElement('div');
+        projectCard.className = 'project-card';
+        
+        let linksHTML = '';
+        if (project.links && project.links.length > 0) {
+            linksHTML = '<div class="project-links">';
+            project.links.forEach(link => {
+                linksHTML += `
+                    <a href="${link.url}" class="project-link">
+                        <i class="${link.icon}"></i> ${link.text}
+                    </a>
+                `;
+            });
+            linksHTML += '</div>';
+        }
+        
+        projectCard.innerHTML = `
+            <div class="project-img">
+                <img src="${project.image}" alt="${project.title}">
+            </div>
+            <div class="project-info">
+                <h3>${project.title}</h3>
+                <p>${project.description}</p>
+                ${linksHTML}
+            </div>
+        `;
+        
+        projectGrid.appendChild(projectCard);
+    });
+}
+
+// Render articles
+function renderArticles(articles) {
+    const articlesGrid = document.querySelector('#articles .project-grid');
+    if (!articlesGrid) return;
+    
+    // Clear existing content
+    articlesGrid.innerHTML = '';
+    
+    // Add each article
+    articles.forEach(article => {
+        const articleCard = document.createElement('div');
+        articleCard.className = 'project-card article-card';
+        
+        let linksHTML = '';
+        if (article.links && article.links.length > 0) {
+            linksHTML = '<div class="project-links">';
+            article.links.forEach(link => {
+                linksHTML += `
+                    <a href="${link.url}" class="project-link">
+                        <i class="${link.icon}"></i> ${link.text}
+                    </a>
+                `;
+            });
+            linksHTML += '</div>';
+        }
+        
+        articleCard.innerHTML = `
+            <div class="project-img">
+                <img src="${article.image}" alt="${article.title}">
+            </div>
+            <div class="project-info">
+                <h3>${article.title}</h3>
+                <p>${article.description}</p>
+                ${linksHTML}
+            </div>
+        `;
+        
+        articlesGrid.appendChild(articleCard);
     });
 }
 
@@ -291,4 +458,4 @@ formMessageStyles.textContent = `
         opacity: 0;
     }
 `;
-document.head.appendChild(formMessageStyles); 
+document.head.appendChild(formMessageStyles);
