@@ -91,7 +91,13 @@
         "title": "MCipher - Encrypt & Decrypt",
         "description": "Simple encrypting and decrypting app that uses some known methods like Caesar, Affine, Vigenere etc. to secure texts, messages, passwords.",
         "image": "images/project4.png",
-        "links": []
+        "links": [
+          {
+            "url": "https://play.google.com/store/apps/details?id=net.mouazkaadan.mcipher",
+            "text": "View on Google Play",
+            "icon": "fab fa-google-play"
+          }
+        ]
       },
       {
         "title": "MTabu - Forbidden Words",
@@ -119,6 +125,18 @@
       }
     ],
     "professional": [
+      {
+        "title": "Femin",
+        "description": "A comprehensive app designed to support women through all stages of their reproductive journey, from cycle tracking to pregnancy and motherhood.",
+        "image": "https://play-lh.googleusercontent.com/KnaW25zHI7yOBcfMIQycPnE7TogswFGSVETO9GVR7TjjgQXAJR2aNhKPsUoej7dNp1U",
+        "links": [
+          {
+            "url": "https://play.google.com/store/apps/details?id=life.femin.pregnancy.period",
+            "text": "View on Google Play",
+            "icon": "fab fa-google-play"
+          }
+        ]
+      },
       {
         "title": "GoPDF",
         "description": "It's a Pdf management tool that provides features such as scanning, signing, converting to JPEG and Word, merging, compressing, and password protection.",
@@ -182,6 +200,18 @@
     ]
   },
   "articles": [
+    {
+      "title": "Starting Compose Activity from Flutter",
+      "description": "Explore how to Start an Android (Compose) Activity from Flutter App.",
+      "image": "https://miro.medium.com/v2/resize:fit:4800/format:webp/1*r_520nvKSt-qyi8Wi7K7DQ.png",
+      "links": [
+        {
+          "url": "https://medium.com/@muaz.kadan/starting-compose-activity-from-flutter-099be5816e15",
+          "text": "Read on Medium",
+          "icon": "fab fa-medium"
+        }
+      ]
+    },
     {
       "title": "MLKit Document Scanner with Jetpack Compose",
       "description": "Integration of MLKit Document Scanning in Jetpack Compose.",
