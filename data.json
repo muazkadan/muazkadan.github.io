@@ -76,12 +76,36 @@
   "projects": {
     "personal": [
       {
-        "title": "Namaz Vakitleri",
-        "description": "An app that shows Prayer Times in Turkey using Web Scrapping (JSoup). It also has an alarm system and a widget.",
+        "title": "Prayer Times",
+        "description": "A mobile app that provides accurate daily prayer times, and notification features for users in various locations.",
         "image": "images/project2.png",
         "links": [
           {
             "url": "https://play.google.com/store/apps/details?id=net.mouazkaadan.namazvakitleri",
+            "text": "View on Google Play",
+            "icon": "fab fa-google-play"
+          }
+        ]
+      },
+      {
+        "title": "Ramadan Calendar",
+        "description": "A mobile app that provides users with daily Ramadan schedules, including prayer and fasting times, for various locations.",
+        "image": "https://play-lh.googleusercontent.com/z3ksJaVNitYUlb6iY_WZBuPb9Ntu-ujsdwm5r0i-WCw9b_sMWbVrcqGsKCXJitTFmu0",
+        "links": [
+          {
+            "url": "https://play.google.com/store/apps/details?id=net.mouazkaadan.ramazanimsakiyesi",
+            "text": "View on Google Play",
+            "icon": "fab fa-google-play"
+          }
+        ]
+      },
+      {
+        "title": "Genshin Tier List Creator",
+        "description": "An app that allows users to create, customize, and share their own Genshin Impact character tier lists.",
+        "image": "https://play-lh.googleusercontent.com/rzIuepigBs3mopQJf-Z7lqRjMscdJOaGRqJiCqnf_iR1zjYvJ2sWJXoB73aMsCufmA",
+        "links": [
+          {
+            "url": "https://play.google.com/store/apps/details?id=net.mouazkaadan.genshinchartierlist",
             "text": "View on Google Play",
             "icon": "fab fa-google-play"
           }
