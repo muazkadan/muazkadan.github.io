@@ -112,6 +112,18 @@
         ]
       },
       {
+        "title": "Birth Control Tracker",
+        "description": "An app that helps the users to track their birth control with reminders and notifications.",
+        "image": "https://lh3.googleusercontent.com/UHZyQBuYnQJutJZEP_mgy403ARowNQBZ_TKgxwBVEFsAvVXMYEFePhNLY77oPAIXhNQ",
+        "links": [
+          {
+            "url": "https://play.google.com/store/apps/details?id=dev.muazkadan.birthcontroltracker",
+            "text": "View on Google Play",
+            "icon": "fab fa-google-play"
+          }
+        ]
+      },
+      {
         "title": "MCipher - Encrypt & Decrypt",
         "description": "Simple encrypting and decrypting app that uses some known methods like Caesar, Affine, Vigenere etc. to secure texts, messages, passwords.",
         "image": "images/project4.png",
