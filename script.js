@@ -1,5 +1,45 @@
+// Constants for theme
+const THEME_KEY = 'user-theme';
+const DARK_MODE_CLASS = 'dark-mode';
+
+// Function to toggle the theme
+function toggleTheme() {
+    document.body.classList.toggle(DARK_MODE_CLASS);
+    const isDarkMode = document.body.classList.contains(DARK_MODE_CLASS);
+    saveThemePreference(isDarkMode ? 'dark' : 'light');
+    // Also update the checkbox state when toggling (e.g., if called programmatically)
+    const themeToggleCheckbox = document.getElementById('theme-toggle');
+    if (themeToggleCheckbox) {
+        themeToggleCheckbox.checked = isDarkMode;
+    }
+}
+
+// Function to save theme preference to localStorage
+function saveThemePreference(theme) {
+    localStorage.setItem(THEME_KEY, theme);
+}
+
+// Function to load and apply saved theme preference
+function loadThemePreference() {
+    const savedTheme = localStorage.getItem(THEME_KEY);
+    const osPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    const themeToggleCheckbox = document.getElementById('theme-toggle');
+
+    if (savedTheme === 'dark' || (!savedTheme && osPrefersDark)) {
+        document.body.classList.add(DARK_MODE_CLASS);
+        if (themeToggleCheckbox) themeToggleCheckbox.checked = true;
+    } else {
+        document.body.classList.remove(DARK_MODE_CLASS);
+        if (themeToggleCheckbox) themeToggleCheckbox.checked = false;
+    }
+}
+
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', () => {
+    // Load theme preference as early as possible
+    loadThemePreference();
+
     // Initialize type animation
     initTypeAnimation();
     
@@ -20,6 +60,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize contact form
     initContactForm();
+
+    // Theme Toggle UI Event Listener
+    const themeToggleCheckbox = document.getElementById('theme-toggle');
+    if (themeToggleCheckbox) {
+        themeToggleCheckbox.addEventListener('change', toggleTheme);
+    }
 });
 
 // Typing animation for the hero section

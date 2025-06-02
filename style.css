@@ -12,6 +12,18 @@
     --background: #FFFFFF;
     --background-alt: #F3F4F6;
     --border-color: #E5E7EB;
+
+    /* Dark Theme Colors */
+    --dark-primary-color: #527BFF; /* A slightly lighter blue for dark mode */
+    --dark-primary-dark: #3E63D8;
+    --dark-secondary-color: #10B981; /* Keep secondary or adjust if needed */
+    --dark-dark-color: #F9FAFB; /* Light text for dark backgrounds */
+    --dark-light-color: #1F2937; /* Darker shade for secondary elements */
+    --dark-text-color: #E5E7EB; /* Light gray text */
+    --dark-text-light: #9CA3AF; /* Lighter gray for less emphasis */
+    --dark-background: #111827; /* Very dark blue/gray */
+    --dark-background-alt: #1F2937; /* Slightly lighter dark blue/gray */
+    --dark-border-color: #374151; /* Darker border */
     
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -43,6 +55,26 @@ body {
     color: var(--text-color);
     background-color: var(--background);
     overflow-x: hidden;
+    transition: background-color var(--transition-slow), color var(--transition-slow);
+}
+
+body.dark-mode {
+    --primary-color: var(--dark-primary-color);
+    --primary-dark: var(--dark-primary-dark);
+    --secondary-color: var(--dark-secondary-color);
+    --dark-color: var(--dark-dark-color);
+    --light-color: var(--dark-light-color);
+    --text-color: var(--dark-text-color);
+    --text-light: var(--dark-text-light);
+    --background: var(--dark-background);
+    --background-alt: var(--dark-background-alt);
+    --border-color: var(--dark-border-color);
+
+    /* Adjust shadows for dark mode if necessary, or they might look too strong */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.10);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.08);
 }
 
 a {
@@ -160,8 +192,13 @@ header {
 }
 
 header.scrolled {
-    background-color: white;
+    background-color: var(--background); /* Use variable for dynamic change */
     box-shadow: var(--shadow);
+    transition: background-color var(--transition-slow), box-shadow var(--transition-slow);
+}
+
+body.dark-mode header.scrolled {
+    background-color: var(--dark-background-alt); /* Specific background for scrolled header in dark mode */
 }
 
 .logo h1 {
@@ -231,9 +268,10 @@ nav ul li a.active::after {
     height: 100vh;
     min-height: 700px;
     padding-top: var(--header-height);
-    background: linear-gradient(135deg, #F3F4F6 0%, #E5E7EB 100%);
+    background: var(--background-alt); /* Use variable for hero background */
     position: relative;
     overflow: hidden;
+    transition: background-color var(--transition-slow);
     display: flex;
     align-items: center;
 }
@@ -385,7 +423,7 @@ nav ul li a.active::after {
     object-fit: cover;
     border: 5px solid var(--background-alt);
     box-shadow: var(--shadow-md);
-    transition: var(--transition);
+    transition: var(--transition), border-color var(--transition-slow);
 }
 
 .about-image img:hover {
@@ -437,6 +475,7 @@ nav ul li a.active::after {
 
 .skills {
     background-color: var(--background-alt);
+    transition: background-color var(--transition-slow);
 }
 
 .skills-wrapper {
@@ -459,6 +498,7 @@ nav ul li a.active::after {
     box-shadow: var(--shadow);
     flex: 1;
     min-width: 300px;
+    transition: background-color var(--transition-slow), box-shadow var(--transition-slow);
 }
 
 .skill-category h3 {
@@ -581,6 +621,7 @@ nav ul li a.active::after {
     border-radius: 10px;
     padding: 1.5rem;
     box-shadow: var(--shadow);
+    transition: background-color var(--transition-slow), box-shadow var(--transition-slow);
 }
 
 .timeline-content h3 {
@@ -642,7 +683,7 @@ nav ul li a.active::after {
     border-radius: 10px;
     overflow: hidden;
     box-shadow: var(--shadow);
-    transition: var(--transition);
+    transition: var(--transition), background-color var(--transition-slow), box-shadow var(--transition-slow);
 }
 
 .project-card:hover {
@@ -734,6 +775,7 @@ nav ul li a.active::after {
 
 .contact {
     background-color: var(--background-alt);
+    transition: background-color var(--transition-slow);
 }
 
 .contact .section-header p {
@@ -791,7 +833,7 @@ nav ul li a.active::after {
     height: 40px;
     background-color: var(--background);
     border-radius: 50%;
-    transition: var(--transition);
+    transition: var(--transition), background-color var(--transition-slow);
     color: var(--primary-color);
     font-size: 1.2rem;
     box-shadow: var(--shadow-sm);
@@ -817,7 +859,7 @@ nav ul li a.active::after {
     font-family: 'Poppins', sans-serif;
     font-size: 0.9rem;
     color: var(--text-color);
-    transition: var(--transition);
+    transition: var(--transition), background-color var(--transition-slow), border-color var(--transition-slow);
     background-color: var(--background);
 }
 
@@ -834,9 +876,45 @@ nav ul li a.active::after {
 }
 
 footer {
-    background-color: var(--dark-color);
-    color: white;
+    background-color: var(--dark-color); /* In light mode, this is #111827 */
+    color: var(--light-color); /* In light mode, this is #F9FAFB */
     padding: 4rem 0 2rem;
+    transition: background-color var(--transition-slow), color var(--transition-slow);
+}
+
+/* Specific overrides for footer elements in dark mode */
+body.dark-mode footer {
+    background-color: var(--dark-background); /* Override to ensure footer is dark in dark mode */
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .footer-logo p {
+    color: rgba(229, 231, 235, 0.7); /* --dark-text-color with alpha */
+}
+
+body.dark-mode .footer-links a {
+    color: rgba(229, 231, 235, 0.7);
+}
+
+body.dark-mode .footer-links a:hover {
+    color: var(--dark-dark-color); /* Typically white in dark mode */
+}
+
+body.dark-mode .footer-social a {
+    background-color: rgba(249, 250, 251, 0.1); /* Uses --dark-dark-color with alpha */
+    color: var(--dark-dark-color); /* Text color for social icons */
+}
+
+body.dark-mode .footer-social a:hover {
+    background-color: var(--dark-primary-color);
+}
+
+body.dark-mode .footer-bottom {
+    border-top: 1px solid rgba(249, 250, 251, 0.1); /* Adjusted for dark mode visibility */
+}
+
+body.dark-mode .footer-bottom p {
+    color: rgba(229, 231, 235, 0.5);
 }
 
 .footer-content {
@@ -906,6 +984,62 @@ footer {
     color: rgba(255, 255, 255, 0.5);
 }
 
+/* Theme Toggle Switch Styles */
+.theme-toggle-container {
+    display: flex;
+    align-items: center;
+    margin-left: 2rem; /* Adjust as needed for spacing */
+}
+
+.theme-toggle-checkbox {
+    display: none; /* Hide the actual checkbox */
+}
+
+.theme-toggle-label {
+    display: block;
+    position: relative;
+    width: 50px; /* Width of the toggle switch */
+    height: 26px; /* Height of the toggle switch */
+    background-color: #ccc; /* Default background for light mode "off" */
+    border-radius: 13px; /* Half of the height for a pill shape */
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+}
+
+.theme-toggle-label::before {
+    content: "";
+    position: absolute;
+    width: 22px; /* Width of the knob */
+    height: 22px; /* Height of the knob */
+    border-radius: 50%; /* Circular knob */
+    background-color: white; /* Knob color */
+    top: 2px; /* Positioning the knob */
+    left: 2px; /* Positioning the knob */
+    transition: transform var(--transition-fast);
+}
+
+.theme-toggle-checkbox:checked + .theme-toggle-label {
+    background-color: var(--primary-color); /* Background when "on" */
+}
+
+.theme-toggle-checkbox:checked + .theme-toggle-label::before {
+    transform: translateX(24px); /* Move knob to the right (50px width - 22px knob width - 2px left - 2px right margin = 24px) */
+}
+
+/* Dark mode specific styles for the toggle switch itself */
+body.dark-mode .theme-toggle-label {
+    background-color: var(--dark-border-color); /* Darker background for "off" state in dark mode */
+}
+
+body.dark-mode .theme-toggle-checkbox:checked + .theme-toggle-label {
+    background-color: var(--dark-primary-color); /* "On" state in dark mode */
+}
+
+body.dark-mode .theme-toggle-label::before {
+    background-color: var(--dark-dark-color); /* Changed knob color to light for better contrast in dark mode */
+}
+
+
 @media screen and (max-width: 1200px) {
     .hero-visual {
         width: 40%;
@@ -957,6 +1091,10 @@ footer {
     }
     
     nav {
+        /* Ensure nav can accommodate the toggle */
+        display: flex; /* Changed from width: 100% to flex for better alignment */
+        align-items: center;
+        justify-content: space-between; /* Distribute space between logo/links and toggles */
         width: 100%;
     }
     
@@ -966,7 +1104,7 @@ footer {
         left: 0;
         width: 100%;
         height: 100vh;
-        background-color: white;
+        background-color: var(--background); /* Use variable for mobile nav background */
         flex-direction: column;
         justify-content: center;
         gap: 2rem;
@@ -994,6 +1132,14 @@ footer {
         width: 30px;
         height: 30px;
         cursor: pointer;
+        order: 1; /* Ensure hamburger is last on mobile if theme toggle is also visible */
+    }
+
+    /* Adjust theme toggle position for mobile if needed */
+    .theme-toggle-container {
+        margin-left: auto; /* Push it to the right, before hamburger */
+        margin-right: 1rem; /* Space before hamburger */
+        order: 0; /* Place it before the hamburger icon */
     }
     
     .nav-toggle-label span, 
@@ -1005,7 +1151,7 @@ footer {
         height: 3px;
         width: 100%;
         border-radius: 3px;
-        transition: var(--transition);
+        transition: var(--transition), background-color var(--transition-slow); /* Added background-color transition */
     }
     
     .nav-toggle-label span {
