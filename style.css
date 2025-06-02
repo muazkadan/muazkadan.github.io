@@ -991,20 +991,22 @@ body.dark-mode .footer-bottom p {
 }
 
 /* New Theme Icon Styles */
-.theme-icon-container { /* Replaced .theme-toggle-container with .theme-icon-container for new styles */
-    position: absolute;
-    top: 50%;
-    right: 0; /* Will adjust in media query if needed for hamburger menu */
-    transform: translateY(-50%);
+.theme-icon-container {
+    position: fixed; /* Changed from absolute to fixed */
+    top: 20px; /* Fixed position from top */
+    right: 20px; /* Fixed position from right */
+    transform: none; /* Removed translateY positioning */
     width: 32px; /* Size of the icon area */
     height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    z-index: 1002; /* Above nav ul if it overflows, but below mobile menu when open */
-    /* Temporary visibility */
-    /* background-color: rgba(255, 0, 0, 0.2); */
+    z-index: 1005; /* Increased z-index to ensure it's above everything */
+    /* Adding background for better visibility during debugging */
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    padding: 5px;
 }
 
 #theme-icon-container i {
@@ -1237,4 +1239,3 @@ body.dark-mode .theme-toggle-label::before { ... }
         flex-wrap: wrap;
     }
 }
-
