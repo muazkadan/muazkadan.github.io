@@ -992,18 +992,16 @@ body.dark-mode .footer-bottom p {
 
 /* New Theme Icon Styles */
 .theme-icon-container {
-    position: fixed; /* Changed from absolute to fixed */
-    top: 20px; /* Fixed position from top */
-    right: 20px; /* Fixed position from right */
-    transform: none; /* Removed translateY positioning */
-    width: 32px; /* Size of the icon area */
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 32px;
     height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    z-index: 1005; /* Increased z-index to ensure it's above everything */
-    /* Adding background for better visibility during debugging */
+    z-index: 1005;
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
     padding: 5px;
@@ -1018,19 +1016,6 @@ body.dark-mode .footer-bottom p {
 body.dark-mode #theme-icon-container i {
     color: var(--light-color); /* Icon color in dark mode (light icon) */
 }
-
-/* Old Theme Toggle Switch Styles - REMOVED */
-/*
-.theme-toggle-container { ... }
-.theme-toggle-checkbox { ... }
-.theme-toggle-label { ... }
-.theme-toggle-label::before { ... }
-.theme-toggle-checkbox:checked + .theme-toggle-label { ... }
-.theme-toggle-checkbox:checked + .theme-toggle-label::before { ... }
-body.dark-mode .theme-toggle-label { ... }
-body.dark-mode .theme-toggle-checkbox:checked + .theme-toggle-label { ... }
-body.dark-mode .theme-toggle-label::before { ... }
-*/
 
 @media screen and (max-width: 1200px) {
     .hero-visual {
@@ -1125,25 +1110,28 @@ body.dark-mode .theme-toggle-label::before { ... }
         width: 30px;
         height: 30px;
         cursor: pointer;
-        /* order: 1; /* No longer needed due to absolute positioning of theme icon */
     }
 
-    /* Adjust theme icon position for mobile */
+    /* Adjust theme icon position for mobile to align with hamburger menu */
     .theme-icon-container {
-        /* Example: position it next to where the hamburger menu will appear */
-        /* The hamburger appears because nav ul is shifted off screen */
-        /* header .container padding is 1rem. Hamburger width is 30px. */
-        right: calc(1rem + 30px + 1rem); /* Position to the left of hamburger, with 1rem spacing */
-        /* If hamburger is not always visible, this might need adjustment or a different strategy */
-        /* For simplicity, let's assume it remains near the original right:0 for now or adjust based on visual testing */
-        /* If the nav elements (like logo) take up too much space, this might need to move */
+        position: absolute;
+        top: 50%;
+        right: calc(1rem + 30px + 0.75rem); /* Position to the left of hamburger with proper spacing */
+        transform: translateY(-50%);
+        width: 28px;
+        height: 28px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        padding: 4px;
     }
     
-    /* Ensure the nav itself doesn't interfere with the absolutely positioned icon */
+    /* Make sure the nav container can accommodate both elements */
     nav {
-        position: static; /* Or ensure it doesn't create a new stacking context that conflicts */
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
     }
-
 
     .nav-toggle-label span, 
     .nav-toggle-label span::before, 
