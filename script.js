@@ -1,5 +1,68 @@
+// Constants for theme
+const THEME_KEY = 'user-theme';
+const DARK_MODE_CLASS = 'dark-mode';
+const SUN_ICON_HTML = '<i class="fas fa-sun"></i>';
+const MOON_ICON_HTML = '<i class="fas fa-moon"></i>';
+
+// Function to update icon based on theme
+function updateThemeIcon(isDarkMode, themeIconContainer) {
+    if (!themeIconContainer) return;
+    // Set icon immediately without fade for initial load or if no animation desired for direct calls
+    themeIconContainer.innerHTML = isDarkMode ? MOON_ICON_HTML : SUN_ICON_HTML;
+}
+
+// Function to toggle the theme
+function toggleTheme() {
+    const themeIconContainer = document.getElementById('theme-icon-container');
+    const iconElement = themeIconContainer ? themeIconContainer.querySelector('i') : null;
+
+    if (iconElement) {
+        iconElement.style.opacity = '0';
+    }
+
+    setTimeout(() => {
+        document.body.classList.toggle(DARK_MODE_CLASS);
+        const isDarkMode = document.body.classList.contains(DARK_MODE_CLASS);
+        saveThemePreference(isDarkMode ? 'dark' : 'light');
+        updateThemeIcon(isDarkMode, themeIconContainer); // Update icon HTML
+        if (iconElement && themeIconContainer.contains(iconElement)) { // Check if iconElement is still valid child
+             // Re-query for the new icon
+            const newIconElement = themeIconContainer.querySelector('i');
+            if(newIconElement) newIconElement.style.opacity = '1';
+        } else if (themeIconContainer) { // If iconElement was removed or is different
+            const newIconElement = themeIconContainer.querySelector('i');
+            if(newIconElement) newIconElement.style.opacity = '1';
+        }
+    }, 150); // Corresponds to half of the opacity transition (0.3s total)
+}
+
+// Function to save theme preference to localStorage
+function saveThemePreference(theme) {
+    localStorage.setItem(THEME_KEY, theme);
+}
+
+// Function to load and apply saved theme preference
+function loadThemePreference() {
+    const savedTheme = localStorage.getItem(THEME_KEY);
+    const osPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const themeIconContainer = document.getElementById('theme-icon-container');
+    let isDarkMode = false;
+
+    if (savedTheme === 'dark' || (!savedTheme && osPrefersDark)) {
+        document.body.classList.add(DARK_MODE_CLASS);
+        isDarkMode = true;
+    } else {
+        document.body.classList.remove(DARK_MODE_CLASS);
+        isDarkMode = false;
+    }
+    updateThemeIcon(isDarkMode, themeIconContainer); // Set initial icon
+}
+
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', () => {
+    // Load theme preference as early as possible
+    loadThemePreference();
+
     // Initialize type animation
     initTypeAnimation();
     
@@ -20,6 +83,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize contact form
     initContactForm();
+
+    // Theme Toggle UI Event Listener
+    const themeIconContainer = document.getElementById('theme-icon-container');
+    if (themeIconContainer) {
+        themeIconContainer.addEventListener('click', toggleTheme);
+    }
 });
 
 // Typing animation for the hero section
