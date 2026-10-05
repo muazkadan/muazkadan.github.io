@@ -734,6 +734,7 @@ nav ul li a.active::after {
 
 .project-links {
     display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
 }
 
@@ -745,6 +746,7 @@ nav ul li a.active::after {
     font-size: 0.9rem;
     color: var(--primary-color);
     font-weight: 500;
+    white-space: nowrap;
     transition: var(--transition);
 }
 
