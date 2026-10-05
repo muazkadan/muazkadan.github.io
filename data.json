@@ -4,56 +4,66 @@
       "title": "Android Developer",
       "company": "Oak Smart Technology",
       "location": "United Kingdom (Remote)",
-      "period": "Jul. 2024 - Present",
+      "start": "2024-07",
+      "end": null,
       "description": ""
     },
     {
       "title": "Android Developer",
       "company": "Kaya Smart Technologies",
       "location": "Istanbul / Turkiye (Hybrid)",
-      "period": "Sept. 2023 - Jul. 2024",
+      "start": "2023-09",
+      "end": "2024-07",
       "description": "Design and build advanced applications for the Android platform."
     },
     {
       "title": "Android Developer",
       "company": "Nuom",
       "location": "Nottingham / England (Remote)",
-      "period": "Jul. 2022 - Jul. 2023",
+      "start": "2022-07",
+      "end": "2023-07",
       "description": "Researching, designing, managing software programs. Modifying software to fix error, improve its performance."
     },
     {
       "title": "Android Developer",
       "company": "City Technologies Center",
       "location": "Konya / Turkiye",
-      "period": "Sept. 2022 - Mar. 2023",
+      "employmentType": "Part-time",
+      "start": "2022-09",
+      "end": "2023-03",
       "description": "Development of new android applications with recent technologies."
     },
     {
       "title": "Android Developer",
       "company": "Appcent",
       "location": "Istanbul / Turkiye (Remote)",
-      "period": "Aug. 2021 - Jul. 2022",
+      "start": "2021-08",
+      "end": "2022-07",
       "description": "Worked on an e-commerce (Unishop) and a B2C (Yemekcom) apps."
     },
     {
       "title": "Android Developer",
       "company": "Karga Karga",
       "location": "Istanbul / Turkiye (Remote)",
-      "period": "Jul. 2021 - Apr. 2022",
+      "employmentType": "Freelance",
+      "start": "2021-07",
+      "end": "2022-04",
       "description": "Was responsible for development, maintenance and updating existing and new projects."
     },
     {
       "title": "Intern",
       "company": "HAVELSAN",
       "location": "Ankara / Turkiye",
-      "period": "Aug. 2020 - Sept. 2020",
+      "start": "2020-08",
+      "end": "2020-09",
       "description": "Learned how to use technologies such as: Reinforcement Learning, ANN, Unity3D"
     },
     {
       "title": "Assistant Student",
       "company": "KTO Karatay University",
       "location": "Konya / Turkiye",
-      "period": "Mar. 2020 - Apr. 2020",
+      "start": "2020-03",
+      "end": "2020-04",
       "description": "Worked on an android project developed with Java"
     }
   ],

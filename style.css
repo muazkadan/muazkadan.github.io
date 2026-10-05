@@ -642,6 +642,54 @@ nav ul li a.active::after {
     margin-bottom: 0.5rem;
 }
 
+.timeline-duration {
+    color: var(--text-light);
+    font-weight: 400;
+}
+
+.timeline-type {
+    display: inline-block;
+    margin-inline-start: 0.5rem;
+    padding: 0.1rem 0.6rem;
+    border: 1px solid var(--primary-color);
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--primary-color);
+    vertical-align: middle;
+}
+
+/* Side roles held at the same time as the main role, nested beneath it */
+.timeline-concurrent {
+    margin-top: 1rem;
+    margin-inline-start: 1.5rem;
+    padding-inline-start: 1.25rem;
+    border-inline-start: 2px dashed color-mix(in srgb, var(--primary-color) 40%, transparent);
+}
+
+.timeline-concurrent-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 0.75rem;
+}
+
+.timeline-content--nested {
+    padding: 1.25rem;
+    border: 1px solid color-mix(in srgb, var(--text-light) 20%, transparent);
+    box-shadow: var(--shadow-sm);
+}
+
+.timeline-content--nested + .timeline-content--nested {
+    margin-top: 1rem;
+}
+
+.timeline-content--nested h3 {
+    font-size: 1.05rem;
+}
+
 .education-section .timeline::before {
     background-color: var(--secondary-color);
 }

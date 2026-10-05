@@ -227,6 +227,89 @@ function loadDataFromJSON() {
         });
 }
 
+// Work experience dates are "YYYY-MM" strings; a null end means the role is ongoing
+const monthFormatter = new Intl.DateTimeFormat('en', { month: 'short', year: 'numeric', timeZone: 'UTC' });
+
+// Convert "YYYY-MM" to a month index so ranges can be compared (null = Present)
+function toMonthIndex(yearMonth) {
+    if (!yearMonth) return Infinity;
+    const [year, month] = yearMonth.split('-').map(Number);
+    return year * 12 + (month - 1);
+}
+
+function formatMonth(yearMonth) {
+    if (!yearMonth) return 'Present';
+    const [year, month] = yearMonth.split('-').map(Number);
+    return monthFormatter.format(new Date(Date.UTC(year, month - 1)));
+}
+
+function formatPeriod(start, end) {
+    const endHtml = end ? `<time datetime="${end}">${formatMonth(end)}</time>` : 'Present';
+    return `<time datetime="${start}">${formatMonth(start)}</time> – ${endHtml}`;
+}
+
+// Month index for a range end, treating an ongoing role as ending this month
+function toEndIndex(yearMonth) {
+    if (yearMonth) return toMonthIndex(yearMonth);
+    const now = new Date();
+    return now.getUTCFullYear() * 12 + now.getUTCMonth();
+}
+
+// Résumé-style duration such as "1 yr 1 mo"; both the start and end months count
+function formatDuration(start, end) {
+    const totalMonths = toEndIndex(end) - toMonthIndex(start) + 1;
+    const years = Math.floor(totalMonths / 12);
+    const months = totalMonths % 12;
+    return [
+        years && `${years} ${years === 1 ? 'yr' : 'yrs'}`,
+        months && `${months} ${months === 1 ? 'mo' : 'mos'}`
+    ].filter(Boolean).join(' ');
+}
+
+// Group roles whose date ranges overlap; a role starting the month another ends is not an overlap
+function groupOverlappingRoles(experiences) {
+    const byStart = experiences.toSorted((a, b) => toMonthIndex(a.start) - toMonthIndex(b.start));
+    const groups = [];
+
+    byStart.forEach(exp => {
+        const current = groups.at(-1);
+        if (current && toMonthIndex(exp.start) < current.endIndex) {
+            current.roles.push(exp);
+            current.endIndex = Math.max(current.endIndex, toEndIndex(exp.end));
+        } else {
+            groups.push({ roles: [exp], endIndex: toEndIndex(exp.end) });
+        }
+    });
+
+    return groups.map(group => group.roles);
+}
+
+// The main role of an overlap is a standard (untyped) role, then the longest one;
+// the rest are side roles shown nested beneath it
+function splitMainRole(roles) {
+    const length = exp => toEndIndex(exp.end) - toMonthIndex(exp.start);
+    const [main, ...sideRoles] = roles.toSorted((a, b) =>
+        Boolean(a.employmentType) - Boolean(b.employmentType) || length(b) - length(a));
+    const byStartDesc = (a, b) => toMonthIndex(b.start) - toMonthIndex(a.start);
+    return { main, sideRoles: sideRoles.toSorted(byStartDesc) };
+}
+
+function renderRoleDetails(exp) {
+    return `
+        <h3>
+            ${exp.title}
+            ${exp.employmentType ? `<span class="timeline-type">${exp.employmentType}</span>` : ''}
+        </h3>
+        <p>${exp.company}, ${exp.location}</p>
+        ${exp.description ? `<p>${exp.description}</p>` : ''}
+    `;
+}
+
+function renderRolePeriod(exp) {
+    return `${formatPeriod(exp.start, exp.end)}
+        <span class="timeline-duration">· ${formatDuration(exp.start, exp.end)}</span>`;
+}
+
 // Render work experience
 function renderWorkExperience(experiences) {
     const timelineContainer = document.querySelector('.experience-section .timeline');
@@ -235,23 +318,33 @@ function renderWorkExperience(experiences) {
     // Clear existing content
     timelineContainer.innerHTML = '';
     
-    // Add each experience item
-    experiences.forEach(exp => {
-        const timelineItem = document.createElement('div');
-        timelineItem.className = 'timeline-item';
-        
-        timelineItem.innerHTML = `
-            <div class="timeline-dot"></div>
-            <div class="timeline-date">${exp.period}</div>
-            <div class="timeline-content">
-                <h3>${exp.title}</h3>
-                <p>${exp.company}, ${exp.location}</p>
-                ${exp.description ? `<p>${exp.description}</p>` : ''}
-            </div>
-        `;
-        
-        timelineContainer.appendChild(timelineItem);
-    });
+    // One timeline entry per main role, most recent first; overlapping side roles nest inside it
+    groupOverlappingRoles(experiences)
+        .map(splitMainRole)
+        .toSorted((a, b) => toMonthIndex(b.main.start) - toMonthIndex(a.main.start))
+        .forEach(({ main, sideRoles }) => {
+            const timelineItem = document.createElement('div');
+            timelineItem.className = 'timeline-item';
+            
+            timelineItem.innerHTML = `
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">${renderRolePeriod(main)}</div>
+                <div class="timeline-content">${renderRoleDetails(main)}</div>
+                ${sideRoles.length ? `
+                    <div class="timeline-concurrent">
+                        <p class="timeline-concurrent-label">Alongside this role</p>
+                        ${sideRoles.map(exp => `
+                            <article class="timeline-content timeline-content--nested">
+                                <div class="timeline-date">${renderRolePeriod(exp)}</div>
+                                ${renderRoleDetails(exp)}
+                            </article>
+                        `).join('')}
+                    </div>
+                ` : ''}
+            `;
+            
+            timelineContainer.appendChild(timelineItem);
+        });
 }
 
 // Render education
