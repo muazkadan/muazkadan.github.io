@@ -642,6 +642,43 @@ nav ul li a.active::after {
     margin-bottom: 0.5rem;
 }
 
+/* Concurrent roles: one timeline item holding side-by-side cards */
+.timeline-item--concurrent .timeline-date {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.75rem;
+}
+
+.timeline-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    background-color: color-mix(in srgb, var(--primary-color) 12%, transparent);
+}
+
+/* Cards sit side by side when there is room and stack on narrow screens */
+.timeline-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: 1rem;
+}
+
+.timeline-group .timeline-content {
+    border-top: 3px solid var(--primary-color);
+}
+
+.timeline-content .timeline-role-period {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
 .education-section .timeline::before {
     background-color: var(--secondary-color);
 }

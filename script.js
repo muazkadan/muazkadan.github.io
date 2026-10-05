@@ -301,7 +301,7 @@ function renderWorkExperience(experiences) {
         timelineItem.innerHTML = `
             <div class="timeline-dot"></div>
             <div class="timeline-date">
-                ${formatPeriod(group.start, group.end)}
+                <span>${formatPeriod(group.start, group.end)}</span>
                 ${isConcurrent ? `<span class="timeline-badge"><i class="fas fa-code-branch" aria-hidden="true"></i> ${group.roles.length} concurrent roles</span>` : ''}
             </div>
             ${isConcurrent
