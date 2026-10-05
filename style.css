@@ -642,56 +642,9 @@ nav ul li a.active::after {
     margin-bottom: 0.5rem;
 }
 
-/* Concurrent roles: one timeline item holding side-by-side cards */
-.timeline-item--concurrent .timeline-date {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.5rem 0.75rem;
-}
-
-.timeline-badge {
-    padding: 0.15rem 0.6rem;
-    border-radius: 999px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--primary-color);
-    background-color: color-mix(in srgb, var(--primary-color) 12%, transparent);
-}
-
-/* Cards sit side by side when there is room and stack on narrow screens */
-.timeline-group {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
-    gap: 1rem;
-}
-
-.timeline-group .timeline-content {
-    border-top: 3px solid var(--primary-color);
-}
-
-.timeline-content .timeline-role-period {
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: var(--primary-color);
-}
-
-/* Track = the group's full period; fill = this role's share of it */
-.timeline-span {
-    position: relative;
-    height: 6px;
-    margin-bottom: 1rem;
-    border-radius: 999px;
-    background-color: color-mix(in srgb, var(--primary-color) 15%, transparent);
-}
-
-.timeline-span-fill {
-    position: absolute;
-    inset-block: 0;
-    inset-inline-start: var(--span-offset);
-    width: var(--span-size);
-    border-radius: inherit;
-    background-color: var(--primary-color);
+.timeline-duration {
+    color: var(--text-light);
+    font-weight: 400;
 }
 
 .education-section .timeline::before {

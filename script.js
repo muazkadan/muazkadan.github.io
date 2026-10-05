@@ -248,31 +248,6 @@ function formatPeriod(start, end) {
     return `<time datetime="${start}">${formatMonth(start)}</time> – ${endHtml}`;
 }
 
-// Group roles whose date ranges overlap; a role starting the month another ends is not an overlap
-function groupOverlappingRoles(experiences) {
-    const byStart = [...experiences].sort((a, b) => toMonthIndex(a.start) - toMonthIndex(b.start));
-    const groups = [];
-
-    byStart.forEach(exp => {
-        const current = groups.at(-1);
-        if (current && toMonthIndex(exp.start) < current.endIndex) {
-            current.roles.push(exp);
-            current.endIndex = Math.max(current.endIndex, toMonthIndex(exp.end));
-        } else {
-            groups.push({ roles: [exp], start: exp.start, endIndex: toMonthIndex(exp.end) });
-        }
-    });
-
-    // Most recent first, both between groups and within a group
-    const byEndDesc = (a, b) => toMonthIndex(b.end) - toMonthIndex(a.end) || toMonthIndex(b.start) - toMonthIndex(a.start);
-    return groups
-        .map(group => {
-            const roles = group.roles.toSorted(byEndDesc);
-            return { roles, start: group.start, end: roles[0].end };
-        })
-        .sort(byEndDesc);
-}
-
 // Month index for a range end, treating an ongoing role as ending this month
 function toEndIndex(yearMonth) {
     if (yearMonth) return toMonthIndex(yearMonth);
@@ -280,56 +255,44 @@ function toEndIndex(yearMonth) {
     return now.getUTCFullYear() * 12 + now.getUTCMonth();
 }
 
-// Bar showing where a role sits within its group's period, as percentages of the group span
-function renderSpanBar(exp, group) {
-    const groupStart = toMonthIndex(group.start);
-    const groupLength = Math.max(toEndIndex(group.end) - groupStart, 1);
-    const offset = (toMonthIndex(exp.start) - groupStart) / groupLength * 100;
-    const size = (toEndIndex(exp.end) - toMonthIndex(exp.start)) / groupLength * 100;
-    return `
-        <div class="timeline-span" aria-hidden="true">
-            <div class="timeline-span-fill" style="--span-offset: ${offset}%; --span-size: ${size}%"></div>
-        </div>
-    `;
-}
-
-// A group is passed for concurrent roles, which then show their own dates and span bar
-function renderRoleCard(exp, group) {
-    return `
-        <article class="timeline-content">
-            <h3>${exp.title}</h3>
-            <p class="timeline-company">${exp.company}, ${exp.location}</p>
-            ${group ? `<p class="timeline-role-period">${formatPeriod(exp.start, exp.end)}</p>${renderSpanBar(exp, group)}` : ''}
-            ${exp.description ? `<p>${exp.description}</p>` : ''}
-        </article>
-    `;
+// Résumé-style duration such as "1 yr 1 mo"; both the start and end months count
+function formatDuration(start, end) {
+    const totalMonths = toEndIndex(end) - toMonthIndex(start) + 1;
+    const years = Math.floor(totalMonths / 12);
+    const months = totalMonths % 12;
+    return [
+        years && `${years} ${years === 1 ? 'yr' : 'yrs'}`,
+        months && `${months} ${months === 1 ? 'mo' : 'mos'}`
+    ].filter(Boolean).join(' ');
 }
 
 // Render work experience
 function renderWorkExperience(experiences) {
     const timelineContainer = document.querySelector('.experience-section .timeline');
     if (!timelineContainer) return;
-
+    
     // Clear existing content
     timelineContainer.innerHTML = '';
-
-    // Add one timeline item per period; overlapping roles share a single item
-    groupOverlappingRoles(experiences).forEach(group => {
-        const isConcurrent = group.roles.length > 1;
+    
+    // Most recent first; overlapping roles simply appear in start-date order
+    const byStartDesc = (a, b) => toMonthIndex(b.start) - toMonthIndex(a.start);
+    experiences.toSorted(byStartDesc).forEach(exp => {
         const timelineItem = document.createElement('div');
-        timelineItem.className = isConcurrent ? 'timeline-item timeline-item--concurrent' : 'timeline-item';
-
+        timelineItem.className = 'timeline-item';
+        
         timelineItem.innerHTML = `
             <div class="timeline-dot"></div>
             <div class="timeline-date">
-                <span>${formatPeriod(group.start, group.end)}</span>
-                ${isConcurrent ? `<span class="timeline-badge">Concurrent roles</span>` : ''}
+                ${formatPeriod(exp.start, exp.end)}
+                <span class="timeline-duration">· ${formatDuration(exp.start, exp.end)}</span>
             </div>
-            ${isConcurrent
-                ? `<div class="timeline-group">${group.roles.map(exp => renderRoleCard(exp, group)).join('')}</div>`
-                : renderRoleCard(group.roles[0])}
+            <div class="timeline-content">
+                <h3>${exp.title}</h3>
+                <p>${exp.company}, ${exp.location}</p>
+                ${exp.description ? `<p>${exp.description}</p>` : ''}
+            </div>
         `;
-
+        
         timelineContainer.appendChild(timelineItem);
     });
 }
