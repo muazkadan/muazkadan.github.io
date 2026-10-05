@@ -1,0 +1,395 @@
+/* Colours follow the app and its Play Store screenshots. */
+:root {
+    --bg: #101318;
+    --bg-deep: #0b0d11;
+    --surface: #181c24;
+    --border: #262c38;
+    --brand: #36598f;
+    --brand-mid: #2a4877;
+    --brand-deep: #172238;
+    --accent: #a9c7ff;
+    --text: #ffffff;
+    --text-muted: #b7c2d6;
+    --container-width: 1120px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Figtree', system-ui, sans-serif;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--bg);
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: var(--accent);
+}
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+h1, h2, h3 {
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 800;
+    text-wrap: balance;
+}
+
+h2 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    margin-bottom: 32px;
+}
+
+/* Header */
+.site-header {
+    position: absolute;
+    inset: 0 0 auto;
+    z-index: 10;
+}
+
+.header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.125rem;
+}
+
+.back-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+.back-link:hover {
+    color: var(--text);
+}
+
+/* Hero */
+.hero {
+    background: linear-gradient(165deg, var(--brand) 0%, var(--brand-mid) 45%, var(--brand-deep) 100%);
+    padding: 120px 0 72px;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 48px;
+    align-items: center;
+}
+
+.hero h1 {
+    font-size: clamp(2.25rem, 6vw, 3.75rem);
+    margin-bottom: 20px;
+}
+
+.lead {
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    color: #dbe5f5;
+    max-width: 34ch;
+    margin-bottom: 32px;
+}
+
+.cta-row {
+    margin-bottom: 28px;
+}
+
+.play-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 26px 12px 22px;
+    border-radius: 14px;
+    background: #000;
+    border: 1px solid #5f6b80;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.35rem;
+    line-height: 1.1;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.play-btn i {
+    font-size: 1.75rem;
+}
+
+.play-btn small {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #c9d2e3;
+}
+
+.play-btn:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+}
+
+.play-btn:focus-visible,
+.gallery:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.hero-points {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    color: #dbe5f5;
+    font-size: 0.95rem;
+}
+
+.hero-points i {
+    color: var(--accent);
+    margin-right: 6px;
+}
+
+.hero-shot img {
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+    border-radius: 28px;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.45);
+}
+
+/* Gallery */
+.gallery-section {
+    padding: 88px 0 72px;
+}
+
+.gallery {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 0 max(16px, calc((100vw - var(--container-width)) / 2 + 16px)) 16px;
+    scroll-padding: 0 max(16px, calc((100vw - var(--container-width)) / 2 + 16px));
+    scrollbar-color: var(--border) transparent;
+}
+
+.gallery img {
+    flex: 0 0 auto;
+    width: min(70vw, 260px);
+    border-radius: 22px;
+    scroll-snap-align: start;
+}
+
+/* Features */
+.features {
+    padding: 72px 0;
+    background: var(--bg-deep);
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.feature {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 28px;
+}
+
+.feature i {
+    font-size: 1.4rem;
+    color: var(--accent);
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    background: rgba(169, 199, 255, 0.12);
+    margin-bottom: 18px;
+}
+
+.feature h3 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+}
+
+.feature p {
+    color: var(--text-muted);
+    font-size: 0.975rem;
+}
+
+/* Wear OS */
+.wear {
+    padding: 88px 0;
+}
+
+.wear-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+}
+
+.wear-shots {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.wear-shots img {
+    width: min(42%, 220px);
+    border-radius: 50%;
+    border: 10px solid #1d2129;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+}
+
+.eyebrow {
+    color: var(--accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+}
+
+.wear-text h2 {
+    margin-bottom: 16px;
+}
+
+.wear-text p:last-child {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    max-width: 42ch;
+}
+
+/* Final call to action */
+.final-cta {
+    padding: 80px 0;
+    text-align: center;
+    background: linear-gradient(165deg, var(--brand-mid) 0%, var(--brand-deep) 100%);
+}
+
+.final-cta h2 {
+    margin-bottom: 28px;
+}
+
+/* Footer */
+.site-footer {
+    padding: 28px 0;
+    background: var(--bg-deep);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.footer-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px 24px;
+}
+
+.footer-row nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+}
+
+.footer-row a {
+    color: var(--text-muted);
+    text-decoration: none;
+}
+
+.footer-row a:hover {
+    color: var(--text);
+}
+
+@media (max-width: 900px) {
+    .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 760px) {
+    .hero {
+        padding-top: 104px;
+    }
+
+    .hero-grid,
+    .wear-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-text {
+        text-align: center;
+    }
+
+    .lead {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-points {
+        justify-content: center;
+    }
+
+    .hero-shot img {
+        max-width: 300px;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .wear-text {
+        text-align: center;
+    }
+
+    .wear-text p:last-child {
+        margin: 0 auto;
+    }
+
+    .footer-row {
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .play-btn {
+        transition: none;
+    }
+}

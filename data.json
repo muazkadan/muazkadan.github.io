@@ -70,9 +70,14 @@
     "personal": [
       {
         "title": "Prayer Times",
-        "description": "A mobile app that provides accurate daily prayer times, and notification features for users in various locations.",
+        "description": "Prayer times anywhere in the world, the adhan right on time, reminders and a Qibla compass, with a Wear OS companion.",
         "image": "images/project2.png",
         "links": [
+          {
+            "url": "prayer-times/",
+            "text": "Learn more",
+            "icon": "fas fa-mosque"
+          },
           {
             "url": "https://play.google.com/store/apps/details?id=net.mouazkaadan.namazvakitleri",
             "text": "View on Google Play",
