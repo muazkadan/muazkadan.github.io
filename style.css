@@ -651,9 +651,6 @@ nav ul li a.active::after {
 }
 
 .timeline-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
     padding: 0.15rem 0.6rem;
     border-radius: 999px;
     font-size: 0.75rem;
@@ -677,6 +674,24 @@ nav ul li a.active::after {
     font-size: 0.8rem;
     font-weight: 500;
     color: var(--primary-color);
+}
+
+/* Track = the group's full period; fill = this role's share of it */
+.timeline-span {
+    position: relative;
+    height: 6px;
+    margin-bottom: 1rem;
+    border-radius: 999px;
+    background-color: color-mix(in srgb, var(--primary-color) 15%, transparent);
+}
+
+.timeline-span-fill {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: var(--span-offset);
+    width: var(--span-size);
+    border-radius: inherit;
+    background-color: var(--primary-color);
 }
 
 .education-section .timeline::before {

@@ -273,12 +273,33 @@ function groupOverlappingRoles(experiences) {
         .sort(byEndDesc);
 }
 
-function renderRoleCard(exp, showPeriod) {
+// Month index for a range end, treating an ongoing role as ending this month
+function toEndIndex(yearMonth) {
+    if (yearMonth) return toMonthIndex(yearMonth);
+    const now = new Date();
+    return now.getUTCFullYear() * 12 + now.getUTCMonth();
+}
+
+// Bar showing where a role sits within its group's period, as percentages of the group span
+function renderSpanBar(exp, group) {
+    const groupStart = toMonthIndex(group.start);
+    const groupLength = Math.max(toEndIndex(group.end) - groupStart, 1);
+    const offset = (toMonthIndex(exp.start) - groupStart) / groupLength * 100;
+    const size = (toEndIndex(exp.end) - toMonthIndex(exp.start)) / groupLength * 100;
+    return `
+        <div class="timeline-span" aria-hidden="true">
+            <div class="timeline-span-fill" style="--span-offset: ${offset}%; --span-size: ${size}%"></div>
+        </div>
+    `;
+}
+
+// A group is passed for concurrent roles, which then show their own dates and span bar
+function renderRoleCard(exp, group) {
     return `
         <article class="timeline-content">
             <h3>${exp.title}</h3>
             <p class="timeline-company">${exp.company}, ${exp.location}</p>
-            ${showPeriod ? `<p class="timeline-role-period">${formatPeriod(exp.start, exp.end)}</p>` : ''}
+            ${group ? `<p class="timeline-role-period">${formatPeriod(exp.start, exp.end)}</p>${renderSpanBar(exp, group)}` : ''}
             ${exp.description ? `<p>${exp.description}</p>` : ''}
         </article>
     `;
@@ -302,11 +323,11 @@ function renderWorkExperience(experiences) {
             <div class="timeline-dot"></div>
             <div class="timeline-date">
                 <span>${formatPeriod(group.start, group.end)}</span>
-                ${isConcurrent ? `<span class="timeline-badge"><i class="fas fa-code-branch" aria-hidden="true"></i> ${group.roles.length} concurrent roles</span>` : ''}
+                ${isConcurrent ? `<span class="timeline-badge">Concurrent roles</span>` : ''}
             </div>
             ${isConcurrent
-                ? `<div class="timeline-group">${group.roles.map(exp => renderRoleCard(exp, true)).join('')}</div>`
-                : renderRoleCard(group.roles[0], false)}
+                ? `<div class="timeline-group">${group.roles.map(exp => renderRoleCard(exp, group)).join('')}</div>`
+                : renderRoleCard(group.roles[0])}
         `;
 
         timelineContainer.appendChild(timelineItem);
