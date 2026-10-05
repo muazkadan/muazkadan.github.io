@@ -287,7 +287,10 @@ function renderWorkExperience(experiences) {
                 <span class="timeline-duration">· ${formatDuration(exp.start, exp.end)}</span>
             </div>
             <div class="timeline-content">
-                <h3>${exp.title}</h3>
+                <h3>
+                    ${exp.title}
+                    ${exp.employmentType ? `<span class="timeline-type">${exp.employmentType}</span>` : ''}
+                </h3>
                 <p>${exp.company}, ${exp.location}</p>
                 ${exp.description ? `<p>${exp.description}</p>` : ''}
             </div>

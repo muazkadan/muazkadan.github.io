@@ -647,6 +647,18 @@ nav ul li a.active::after {
     font-weight: 400;
 }
 
+.timeline-type {
+    display: inline-block;
+    margin-inline-start: 0.5rem;
+    padding: 0.1rem 0.6rem;
+    border: 1px solid var(--primary-color);
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--primary-color);
+    vertical-align: middle;
+}
+
 .education-section .timeline::before {
     background-color: var(--secondary-color);
 }
