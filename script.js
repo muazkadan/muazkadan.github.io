@@ -227,29 +227,88 @@ function loadDataFromJSON() {
         });
 }
 
+// Work experience dates are "YYYY-MM" strings; a null end means the role is ongoing
+const monthFormatter = new Intl.DateTimeFormat('en', { month: 'short', year: 'numeric', timeZone: 'UTC' });
+
+// Convert "YYYY-MM" to a month index so ranges can be compared (null = Present)
+function toMonthIndex(yearMonth) {
+    if (!yearMonth) return Infinity;
+    const [year, month] = yearMonth.split('-').map(Number);
+    return year * 12 + (month - 1);
+}
+
+function formatMonth(yearMonth) {
+    if (!yearMonth) return 'Present';
+    const [year, month] = yearMonth.split('-').map(Number);
+    return monthFormatter.format(new Date(Date.UTC(year, month - 1)));
+}
+
+function formatPeriod(start, end) {
+    const endHtml = end ? `<time datetime="${end}">${formatMonth(end)}</time>` : 'Present';
+    return `<time datetime="${start}">${formatMonth(start)}</time> – ${endHtml}`;
+}
+
+// Group roles whose date ranges overlap; a role starting the month another ends is not an overlap
+function groupOverlappingRoles(experiences) {
+    const byStart = [...experiences].sort((a, b) => toMonthIndex(a.start) - toMonthIndex(b.start));
+    const groups = [];
+
+    byStart.forEach(exp => {
+        const current = groups.at(-1);
+        if (current && toMonthIndex(exp.start) < current.endIndex) {
+            current.roles.push(exp);
+            current.endIndex = Math.max(current.endIndex, toMonthIndex(exp.end));
+        } else {
+            groups.push({ roles: [exp], start: exp.start, endIndex: toMonthIndex(exp.end) });
+        }
+    });
+
+    // Most recent first, both between groups and within a group
+    const byEndDesc = (a, b) => toMonthIndex(b.end) - toMonthIndex(a.end) || toMonthIndex(b.start) - toMonthIndex(a.start);
+    return groups
+        .map(group => {
+            const roles = group.roles.toSorted(byEndDesc);
+            return { roles, start: group.start, end: roles[0].end };
+        })
+        .sort(byEndDesc);
+}
+
+function renderRoleCard(exp, showPeriod) {
+    return `
+        <article class="timeline-content">
+            <h3>${exp.title}</h3>
+            <p class="timeline-company">${exp.company}, ${exp.location}</p>
+            ${showPeriod ? `<p class="timeline-role-period">${formatPeriod(exp.start, exp.end)}</p>` : ''}
+            ${exp.description ? `<p>${exp.description}</p>` : ''}
+        </article>
+    `;
+}
+
 // Render work experience
 function renderWorkExperience(experiences) {
     const timelineContainer = document.querySelector('.experience-section .timeline');
     if (!timelineContainer) return;
-    
+
     // Clear existing content
     timelineContainer.innerHTML = '';
-    
-    // Add each experience item
-    experiences.forEach(exp => {
+
+    // Add one timeline item per period; overlapping roles share a single item
+    groupOverlappingRoles(experiences).forEach(group => {
+        const isConcurrent = group.roles.length > 1;
         const timelineItem = document.createElement('div');
-        timelineItem.className = 'timeline-item';
-        
+        timelineItem.className = isConcurrent ? 'timeline-item timeline-item--concurrent' : 'timeline-item';
+
         timelineItem.innerHTML = `
             <div class="timeline-dot"></div>
-            <div class="timeline-date">${exp.period}</div>
-            <div class="timeline-content">
-                <h3>${exp.title}</h3>
-                <p>${exp.company}, ${exp.location}</p>
-                ${exp.description ? `<p>${exp.description}</p>` : ''}
+            <div class="timeline-date">
+                ${formatPeriod(group.start, group.end)}
+                ${isConcurrent ? `<span class="timeline-badge"><i class="fas fa-code-branch" aria-hidden="true"></i> ${group.roles.length} concurrent roles</span>` : ''}
             </div>
+            ${isConcurrent
+                ? `<div class="timeline-group">${group.roles.map(exp => renderRoleCard(exp, true)).join('')}</div>`
+                : renderRoleCard(group.roles[0], false)}
         `;
-        
+
         timelineContainer.appendChild(timelineItem);
     });
 }
